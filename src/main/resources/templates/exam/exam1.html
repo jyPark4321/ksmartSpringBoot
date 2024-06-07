@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeLeaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <link rel="icon" href="data:,">
@@ -44,7 +44,11 @@
     - 문법: script 속성에 th:inline="javascript" 추가
     <script th:inline="javascript">
         const memberInfo = [[${memberInfo}]];
-        console.log(memberInfo);
+        //console.log(memberInfo);
+        for (const key in memberInfo) {
+            console.log(`${key} : ${memberInfo[key]}`);
+        }
     </script>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 </body>
 </html>

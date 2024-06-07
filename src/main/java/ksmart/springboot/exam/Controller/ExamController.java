@@ -1,18 +1,34 @@
 package ksmart.springboot.exam.Controller;
 
 import ksmart.springboot.exam.dto.Member;
+import ksmart.springboot.exam.service.ExamService;
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 
 /**
  * @Controller : 주소의 요청과 응답을 담당하는 클래스(HTTP 통신)
  *               VIEW의 경로가 정해져 있다.(String : 뷰의 논리적인 경로)
  */
+
 @Controller
-public class examController {
+public class ExamController {
+    @RequestMapping(value = "/exam/exam2", method = RequestMethod.GET)
+    public ModelAndView exam2() {
+        ExamService examService =  new ExamService();
+
+
+        ModelAndView mav = new ModelAndView();
+        mav.addObject("title", "예제2");
+        mav.setViewName("exam/exam2");
+
+        return mav;
+    }
 
     /**
      * @GetMapping : GET 방식의 HTTP 주소요청시 특정핸들러 메소드와 매핑시켜주는 어노테이션
