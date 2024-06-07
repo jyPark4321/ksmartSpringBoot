@@ -1,8 +1,10 @@
 package ksmart.springboot.exam.Controller;
 
+import ksmart.springboot.exam.dto.Member;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+
 
 
 /**
@@ -19,10 +21,12 @@ public class examController {
     @GetMapping("/exam/exam1")
     public String exam1(Model model) {
 
+        Member memberInfo = new Member("id001","pw001","홍01","관리자","010-1111-1111");
+
         // Model의 역활 : 화면에 전달될 데이터를 가지고 있는 객체
         // model.addAllAttributes("키","값");
         model.addAttribute("title", "예제1");
-
+        model.addAttribute("memberInfo", memberInfo);
 
         return "exam/exam1";
     }
