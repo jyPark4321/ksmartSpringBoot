@@ -30,13 +30,14 @@
 
 
 1.오전수업
-> 수업내용 : thymeleaf 반복문, 조건문, 객체바인딩, 변수선언하는방법
+> 수업내용 : thymeleaf 반복문, 조건문, 객체바인딩, 변수선언하는방법 , 실습문제
+
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <link rel="stylesheet" href="/css/table.css">
     <meta charset="UTF-8">
-    <title>실습</title>
+    <title>실습문제</title>
 </head>
 <body>
 <h1>실습문제</h1>
