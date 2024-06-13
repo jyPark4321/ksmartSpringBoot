@@ -1,4 +1,4 @@
-package ksmart.springboot.exam.controller;
+package ksmart.springboot.exam.Controller;
 
 import java.util.List;
 
@@ -71,6 +71,7 @@ public class ExamController {
 
         ModelAndView mav = new ModelAndView();
         mav.addObject("title", "예제2"); //화면에 전달할 data를 셋팅하는 방법
+        mav.addObject("memberList", memberList);
         mav.setViewName("/exam/exam2");
         return mav;
     }
@@ -91,5 +92,29 @@ public class ExamController {
         model.addAttribute("memberInfo",memberInfo);
 
         return "exam/exam1";
+    }
+
+    @GetMapping("/exam/exam3")
+    public String exam3(Model model){
+        Member memberInfo = examService.getMemberInfo();
+        List<Member> memberList = examService.getMemberList();
+
+        model.addAttribute("title","예제3");
+        model.addAttribute("memberInfo",memberInfo);
+        model.addAttribute("memberList",memberList);
+        model.addAttribute("memberListNull",null);
+
+        return "exam/exam3";
+    }
+
+    @GetMapping("/exam/exam4")
+    public String exam4(Model model){
+        Member memberInfo = examService.getMemberInfoById("id003");
+        List<Member> memberList = examService.getMemberList();
+        System.out.println(memberInfo);
+
+        model.addAttribute("memberInfo",memberInfo);
+        model.addAttribute("memberList",memberList);
+        return "exam/exam4";
     }
 }

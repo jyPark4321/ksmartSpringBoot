@@ -9,7 +9,7 @@ public class Member {
 
     public Member(){}
 
-    public Member(String memberId, String memberPw, String memberName, String memberLevel, String memberMobile) {
+    public Member(String memberId, String memberPw, String memberLevel, String memberName, String memberMobile) {
         super();
         this.memberId = memberId;
         this.memberPw = memberPw;
@@ -63,8 +63,8 @@ public class Member {
         final StringBuilder sb = new StringBuilder("Member{");
         sb.append("memberId='").append(memberId).append('\'');
         sb.append(", memberPw='").append(memberPw).append('\'');
-        sb.append(", memberName='").append(memberName).append('\'');
         sb.append(", memberLevel='").append(memberLevel).append('\'');
+        sb.append(", memberName='").append(memberName).append('\'');
         sb.append(", memberMobile='").append(memberMobile).append('\'');
         sb.append('}');
         return sb.toString();
