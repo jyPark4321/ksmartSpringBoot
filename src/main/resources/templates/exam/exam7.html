@@ -1,11 +1,13 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/default}">
 <head>
-  <meta charset="UTF-8">
-  <title th:text="${title}">ajax 실습</title>
-  <link rel="stylesheet" type="text/css" th:href="@{/css/table.css}">
+
 </head>
-<body>
+
+
+<th:block layout:fragment="customContent">
   <h1>ajax 실습</h1>
   <button type="button" id="listBtn">전체 회원 조회</button><br><br>
   <input type="text" id="memberId" name="memberId" placeholder="검색할 아이디를 입력해주세요"/>
@@ -13,17 +15,20 @@
 
   <table>
     <thead>
-      <tr>
-        <th>회원아이디</th>
-        <th>회원비밀번호</th>
-        <th>회원등급</th>
-        <th>회원이름</th>
-        <th>회원연락처</th>
-      </tr>
+    <tr>
+      <th>회원아이디</th>
+      <th>회원비밀번호</th>
+      <th>회원등급</th>
+      <th>회원이름</th>
+      <th>회원연락처</th>
+    </tr>
     </thead>
     <tbody id="tBody">
     </tbody>
   </table>
+</th:block>
+
+<th:block layout:fragment="customJs">
   <script>
     // fetch
     // 실습. listBtn를 클릭시 콘솔에 회원의 전체목록을 출력하시오
@@ -41,25 +46,25 @@
     $listBtn.addEventListener('click', e => {
       request.get('/member/list')
               .then(list => {
-                  $tbody.replaceChildren();
-                  const domFragment = document.createDocumentFragment();
-                  const memberList = list.map(memberInfo => {
-                    const memberId = memberInfo.memberId;
-                    const memberPw = memberInfo.memberPw;
-                    const memberLevel = memberInfo.memberLevel;
-                    const memberName = memberInfo.memberName;
-                    const memberMobile = memberInfo.memberMobile;
-                    return {memberId,memberPw,memberLevel,memberName,memberMobile}
-                  });
+                $tbody.replaceChildren();
+                const domFragment = document.createDocumentFragment();
+                const memberList = list.map(memberInfo => {
+                  const memberId = memberInfo.memberId;
+                  const memberPw = memberInfo.memberPw;
+                  const memberLevel = memberInfo.memberLevel;
+                  const memberName = memberInfo.memberName;
+                  const memberMobile = memberInfo.memberMobile;
+                  return {memberId,memberPw,memberLevel,memberName,memberMobile}
+                });
 
-                  memberList.forEach(memberInfo => {
-                    console.log(memberInfo);
-                    const $tr = document.createElement('tr');
-                    for(const key in memberInfo){
-                      const $td = document.createElement('td');
-                      $td.textContent = memberInfo[key];
-                      $tr.append($td);
-                    }
+                memberList.forEach(memberInfo => {
+                  console.log(memberInfo);
+                  const $tr = document.createElement('tr');
+                  for(const key in memberInfo){
+                    const $td = document.createElement('td');
+                    $td.textContent = memberInfo[key];
+                    $tr.append($td);
+                  }
                   domFragment.append($tr);
                 });
                 $tbody.append(domFragment);
@@ -111,6 +116,6 @@
 
 
   </script>
-</body>
+</th:block>
 
 </html>

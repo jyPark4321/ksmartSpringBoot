@@ -1,12 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/default}">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
 </head>
-<body>
-    index.html
 
-    <a href="exam/exam1">이동하기</a>
-</body>
+    <th:block layout:fragment="customContent">
+        index.html
+    </th:block>
+    <th:block layout:fragment="customJsFile">
+    </th:block>
+
+    <th:block layout:fragment="customJs">
+    </th:block>
+
 </html>
