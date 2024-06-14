@@ -13,8 +13,8 @@ public class Member {
         super();
         this.memberId = memberId;
         this.memberPw = memberPw;
-        this.memberName = memberName;
         this.memberLevel = memberLevel;
+        this.memberName = memberName;
         this.memberMobile = memberMobile;
     }
 

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title th:text="${title}">thymeleaf 유틸리티 오브젝트</title>
+</head>
+<body>
+  <h1>thymeleaf 유틸리티 오브젝트</h1>
+  - java.util 패키지 안에있는 유틸리티 클래스를 thymeleaf 가공해서 제공하는 클래스 <br>
+  - 구문 ${#thymeleaf유틸리티클래스.메소드} <br>
+
+  <span th:text="${#locale.country}" th:style="'font-size : 20px;'">US</span>
+
+  <h2 th:text="${now}"></h2>
+  <h2 th:text="${#dates.createToday()}">date thymeleaf</h2>
+  <h2 th:text="${#dates.format(now,'yyyy-MM-dd HH:mm:ss')}"></h2>
+
+  <!-- 천자리 구분기호 -->
+  <h2 th:text="${#numbers.formatInteger(price,3,'COMMA')}"></h2>
+  <!-- JAVASCRIPT ``의역할이 || -->
+  <h2 th:text="|\ ${#numbers.formatInteger(price,3,'COMMA')}|"></h2>
+
+  <!-- List 객체 유틸리티 -->
+  <h2 th:text="${#lists.isEmpty(memberList)}"></h2>
+  <h2 th:text="${#lists.size(memberList)}"></h2>
+  <h2 th:text="${memberList.size()}"></h2>
+</body>
+</html>

@@ -1,13 +1,13 @@
 package ksmart.springboot.exam.Controller;
 
+import java.sql.SQLOutput;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import jakarta.annotation.PostConstruct;
@@ -116,5 +116,70 @@ public class ExamController {
         model.addAttribute("memberInfo",memberInfo);
         model.addAttribute("memberList",memberList);
         return "exam/exam4";
+    }
+
+    @GetMapping("/exam/exam5")
+    public String exam5(Model model){
+        List<Member> memberList = examService.getMemberList();
+
+        model.addAttribute("title","예제5");
+        model.addAttribute("memberList",memberList);
+        model.addAttribute("price",123456789);
+        model.addAttribute("now",new Date());
+
+        return  "exam/exam5";
+    }
+
+    @GetMapping("/exam/exam6")
+    public String exam6(Model model){
+        Member memberInfo = examService.getMemberInfo();
+
+        model.addAttribute("title","예제6");
+        model.addAttribute("memberInfo",memberInfo);
+
+        return "exam/exam6";
+    }
+
+    /**
+     * @RequestParam(name="요청시의 키",required=요청시의 쿼리스트링 필수여부, defaultValue="기본값") 쿼리스트링 바인딩하는 어노테이션
+     * @param memberId
+     * @param memberPw
+     * @param pageNum
+     * @param member -> 커맨드객체(Controller 계층)
+     * @return
+     */
+    @GetMapping("/exam/detail")
+    public String examDetail(@RequestParam(name="memberId") String memberId,
+                             @RequestParam(value="memberPw",required = false) String memberPw,
+                             @RequestParam(name="PageNum",required = false,defaultValue = "1") int pageNum,
+                             Member member,
+                             Model model){
+        System.out.println("memberId:"+memberId);
+        System.out.println("memberPw:"+memberPw);
+        System.out.println("pageNum:"+pageNum);
+        System.out.println("member:"+member);
+
+        Member memberInfo = examService.getMemberInfoById(memberId);
+        model.addAttribute("title","회원상세조회");
+        model.addAttribute("memberInfo",memberInfo);
+
+        return "exam/detail";
+    }
+
+    /**
+     * @ResponseBody : 반환하는 데이터 유형에 따라 text/html, application/json 변환 후 응답해주는 어노테이션
+     * @return
+     */
+    @GetMapping("/exam/api")
+    @ResponseBody
+    public List<Member> examApi(Member member){
+        System.out.println("Member: " + member);
+        return examService.getMemberList();
+    }
+
+    @GetMapping("/exam/exam7")
+    public String exam7(Model model){
+        model.addAttribute("title","예제7");
+        return "exam/exam7";
     }
 }
