@@ -1,10 +1,14 @@
 package ksmart.springboot.exam.Controller;
 
+import java.io.File;
 import java.sql.SQLOutput;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -182,4 +186,6 @@ public class ExamController {
         model.addAttribute("title","예제7");
         return "exam/exam7";
     }
+
+
 }
